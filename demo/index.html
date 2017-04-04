@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Leafletjs - Ordnance Survey OpenSpace Example</title>
+  <title>Leafletjs - Stratus Connect Example</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -22,32 +22,23 @@
 
   <div id="map"></div>
 
-  <!-- dependencies -->
-  <!--
-    Specific versions of Proj4Leaflet and its dependency on Proj4js
-
-    ** Don't pull files from github like this in production apps!
-  -->
   <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-  <script src="https://rawgit.com/kartena/Proj4Leaflet/master/lib/proj4-compressed.js"></script><!-- proj4js -->
-  <script src="https://rawgit.com/kartena/Proj4Leaflet/master/src/proj4leaflet.js"></script><!--
-  proj4leaflet -->
+  <script src="https://rawgit.com/kartena/Proj4Leaflet/master/lib/proj4-compressed.js"></script>
+  <script src="https://rawgit.com/kartena/Proj4Leaflet/master/src/proj4leaflet.js"></script>
   <script src="../StratusConnect.js"></script>
-
   <script>
 
 (function () {
   'use strict';
 
   var map,
-    OSHQ = {
-      WGS84: [51.5046289,-0.0474794]
-    };
+    latlng = [51.5033106,-0.0840066];
 
   function init() {
     var popup = L.popup();
 
     var layers = {
+      baseMap: L.StratusConnect.tilelayer('B_NoBaseMap'),
       archaeologicalPriorityZones: L.StratusConnect.tilelayer('S_APZ'),
       listedBuildings: L.StratusConnect.tilelayer('S_ListedBuildingsFeb16B_group'),
       postcodeAreas: L.StratusConnect.tilelayer('S_Postcode_SwkUnitPostcodePolygon'),
@@ -64,21 +55,12 @@
     });
     L.control.layers({},layers).addTo(map);
 
-    /* New L.TileLayer.StratusConnect with API Key */
-    // map.addLayer(L.StratusConnect.tilelayer('S_Plan_PermittedDevelopmentApplicationsSouthwark'));
-
-
-    // map.addLayer(L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    //   id: 'mapbox.streets'
-    // }))
-
-
-    map.setView(OSHQ.WGS84, 3);
+    map.setView(latlng, 3);
 
     /* add some ui to the map */
     L.control.scale({ position: 'bottomright' }).addTo(map);
 
-    L.marker(OSHQ.WGS84).addTo(map)
+    L.marker(latlng).addTo(map)
       .bindPopup('Point').openPopup();
 
     /* add some event callbacks */
