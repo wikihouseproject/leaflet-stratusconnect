@@ -37,13 +37,20 @@ function _interopRequireDefault(obj) {
   }
 })(undefined, function(L) {
   L.StratusConnect = L.StratusConnect || {};
-  L.StratusConnect.VERSION = "0.0.6";
+  L.StratusConnect.VERSION = "0.0.7";
+  var bounds = {
+    top: 219960,
+    right: 572960,
+    bottom: 138040,
+    left: 491040
+  };
   L.StratusConnect.CRS = L.extend(
     new L.Proj
       .CRS(
       "EPSG:27700",
       "+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs",
       {
+        origin: [bounds.left, bounds.top],
         resolutions: (0, _from2.default)(new Array(12), function(x, i) {
           return 320 / Math.pow(2, i);
         })
@@ -64,12 +71,12 @@ function _interopRequireDefault(obj) {
         {
           crs: L.StratusConnect.CRS,
           maxZoom: 12,
-          minZoom: 2,
+          // minZoom: 2,
           opacity: 0.8,
           tileSize: 286,
           bounds: L.latLngBounds(
-            L.latLng(51.38885, -0.64932),
-            L.latLng(52.06954, 0.48703)
+            L.latLng(51.24123, -0.48975),
+            L.latLng(51.69631, 0.2477)
           )
         },
         options
@@ -97,14 +104,20 @@ function _interopRequireDefault(obj) {
     },
 
     getTileUrl: function getTileUrl(tilePoint) {
+      var bounds = {
+        top: 219960,
+        right: 572960,
+        bottom: 138040,
+        left: 491040
+      };
       var resolutionMpp = this.options.crs.options.resolutions[tilePoint.z],
         tileSizeMetres = this.options.tileSize * resolutionMpp,
         tileBboxX0 = tileSizeMetres * (0.5 + tilePoint.x),
         tileBboxY0 = tileSizeMetres * (-0.5 - tilePoint.y);
 
-      this.wmsParams.x = tileBboxX0;
-      this.wmsParams.y = tileBboxY0;
-      this.wmsParams.zoom = resolutionMpp * 286;
+      this.wmsParams.x = tileBboxX0 + bounds.top;
+      this.wmsParams.y = tileBboxY0 + bounds.left;
+      this.wmsParams.zoom = resolutionMpp * this.options.tileSize;
 
       return this._url + L.Util.getParamString(this.wmsParams);
     }

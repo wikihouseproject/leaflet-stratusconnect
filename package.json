@@ -1,6 +1,6 @@
 {
   "name": "leaflet-stratusconnect",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A Leaflet js TileLayer using the Stratus Connect map service",
   "main": "StratusConnect.es5.js",
   "scripts": {
