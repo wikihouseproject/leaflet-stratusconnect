@@ -1,5 +1,3 @@
-//
-
 (function(root, factory) {
   // UMD for  Node, AMD or browser globals
   if (typeof define === "function" && define.amd) {
@@ -42,7 +40,7 @@
     initialize: function(mapname, crs, options) {
       L.TileLayer.WMS.prototype.initialize.call(
         this,
-        "http://maps.southwark.gov.uk/connect/controller/mapping/getmap",
+        "https://corsproxy.bitsushi.com/maps.southwark.gov.uk/connect/controller/mapping/getmap",
         {
           crs: L.StratusConnect.CRS,
           maxZoom: 12,
