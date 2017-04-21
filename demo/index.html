@@ -12,9 +12,8 @@
       box-sizing: border-box;
     }
     #map {
-      width: 100%;
-      height: 800px;
-      margin-top: 200px;
+      width: 100vw;
+      height: 100vh;
     }
   </style>
 </head>
@@ -46,7 +45,6 @@
       permittedDevelopmentRestrictions: L.StratusConnect.tilelayer('S_Plan_PermittedDevelopmentApplicationsSouthwark')
     }
 
-    /* L.Map with OS options */
     map = new L.Map('map', {
       zoom: 0,
       crs: L.StratusConnect.CRS,
@@ -57,13 +55,11 @@
 
     map.setView(latlng, 3);
 
-    /* add some ui to the map */
     L.control.scale({ position: 'bottomright' }).addTo(map);
 
     L.marker(latlng).addTo(map)
       .bindPopup('Point').openPopup();
 
-    /* add some event callbacks */
     function onMapClick(e) {
       popup
         .setLatLng(e.latlng)
