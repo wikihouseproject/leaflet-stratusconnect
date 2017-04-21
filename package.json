@@ -5,7 +5,8 @@
   "main": "StratusConnect.es5.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "babel StratusConnect.js -o StratusConnect.es5.js && lint-staged"
+    "build": "babel StratusConnect.js -o StratusConnect.es5.js",
+    "precommit": "yarn run build && lint-staged"
   },
   "lint-staged": {
     "*.js": [
