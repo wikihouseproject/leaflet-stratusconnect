@@ -19,7 +19,7 @@
   }
 })(this, function(L) {
   L.StratusConnect = L.StratusConnect || {};
-  L.StratusConnect.VERSION = "0.0.8";
+  L.StratusConnect.VERSION = "0.0.9";
   var bounds = {
     top: 219960,
     right: 572960,
@@ -47,7 +47,7 @@
     initialize: function(mapname, crs, options) {
       L.TileLayer.WMS.prototype.initialize.call(
         this,
-        "https://corsproxy.bitsushi.com/maps.southwark.gov.uk/connect/controller/mapping/getmap",
+        "https://southwark-maps.buildx.cc/connect/controller/mapping/getmap",
         {
           crs: L.StratusConnect.CRS,
           maxZoom: 12,
