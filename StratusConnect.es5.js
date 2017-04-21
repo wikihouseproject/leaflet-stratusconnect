@@ -37,7 +37,7 @@ function _interopRequireDefault(obj) {
   }
 })(undefined, function(L) {
   L.StratusConnect = L.StratusConnect || {};
-  L.StratusConnect.VERSION = "0.0.4";
+  L.StratusConnect.VERSION = "0.0.5";
   L.StratusConnect.CRS = L.extend(
     new L.Proj
       .CRS(
