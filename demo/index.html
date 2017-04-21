@@ -46,14 +46,14 @@
     }
 
     map = new L.Map('map', {
-      zoom: 0,
+      zoom: 1,
       crs: L.StratusConnect.CRS,
       attributionControl: true,
       layers: Object.values(layers)
     });
     L.control.layers({},layers).addTo(map);
 
-    map.setView(latlng, 3);
+    map.setView(latlng, 5);
 
     L.control.scale({ position: 'bottomright' }).addTo(map);
 

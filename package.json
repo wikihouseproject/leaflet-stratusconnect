@@ -1,8 +1,8 @@
 {
   "name": "leaflet-stratusconnect",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Leaflet js TileLayer using the Stratus Connect map service",
-  "main": "StratusConnect.js",
+  "main": "StratusConnect.es5.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "precommit": "lint-staged"
@@ -30,10 +30,13 @@
   },
   "homepage": "https://github.com/wikihouseproject/leaflet-stratusconnect",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "leaflet": "^1.0.3",
     "proj4leaflet": "^1.0.1"
   },
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^3.2.2",
     "eslint-config-airbnb-base": "^5.0.1",
     "eslint-plugin-import": "^1.12.0",

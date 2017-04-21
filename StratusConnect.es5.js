@@ -1,3 +1,17 @@
+"use strict";
+
+var _from = require("babel-runtime/core-js/array/from");
+
+var _from2 = _interopRequireDefault(_from);
+
+var _typeof2 = require("babel-runtime/helpers/typeof");
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
 require("babel-polyfill");
 
 (function(root, factory) {
@@ -5,7 +19,11 @@ require("babel-polyfill");
   if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
     define(["leaflet", "proj4leaflet"], factory);
-  } else if (typeof exports === "object") {
+  } else if (
+    (typeof exports === "undefined"
+      ? "undefined"
+      : (0, _typeof3.default)(exports)) === "object"
+  ) {
     // Node & CommonJS-like environments.
     var L = require("leaflet"); // eslint-disable-line vars-on-top
     require("proj4leaflet");
@@ -18,9 +36,9 @@ require("babel-polyfill");
     }
     root.returnExports = factory(root.L);
   }
-})(this, function(L) {
+})(undefined, function(L) {
   L.StratusConnect = L.StratusConnect || {};
-  L.StratusConnect.VERSION = "0.0.2";
+  L.StratusConnect.VERSION = "0.0.1";
   L.StratusConnect.CRS = L.extend(
     new L.Proj
       .CRS(
@@ -40,18 +58,20 @@ require("babel-polyfill");
         //   0.089375,
         //   0.0446875
         // ]
-        resolutions: Array.from(new Array(12), (x, i) => 320 / 2 ** i)
+        resolutions: (0, _from2.default)(new Array(12), function(x, i) {
+          return 320 / 2 ** i;
+        })
       }
     ),
     {
-      distance: function(a, b) {
+      distance: function distance(a, b) {
         return L.CRS.Earth.distance(a, b);
       }
     }
   );
 
   L.StratusConnect.TileLayer = L.TileLayer.WMS.extend({
-    initialize: function(mapname, crs, options) {
+    initialize: function initialize(mapname, crs, options) {
       L.TileLayer.WMS.prototype.initialize.call(
         this,
         "http://maps.southwark.gov.uk/connect/controller/mapping/getmap",
@@ -73,7 +93,7 @@ require("babel-polyfill");
       };
     },
 
-    getAttribution: function() {
+    getAttribution: function getAttribution() {
       return (
         "&copy; " +
         new Date().getFullYear() +
@@ -81,11 +101,11 @@ require("babel-polyfill");
       );
     },
 
-    onAdd: function(map) {
+    onAdd: function onAdd(map) {
       L.TileLayer.prototype.onAdd.call(this, map);
     },
 
-    getTileUrl: function(tilePoint) {
+    getTileUrl: function getTileUrl(tilePoint) {
       var resolutionMpp = this.options.crs.options.resolutions[tilePoint.z],
         tileSizeMetres = this.options.tileSize * resolutionMpp,
         tileBboxX0 = tileSizeMetres * (0.5 + tilePoint.x),
