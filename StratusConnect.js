@@ -20,7 +20,7 @@ require("babel-polyfill");
   }
 })(this, function(L) {
   L.StratusConnect = L.StratusConnect || {};
-  L.StratusConnect.VERSION = "0.0.2";
+  L.StratusConnect.VERSION = "0.0.3";
   L.StratusConnect.CRS = L.extend(
     new L.Proj
       .CRS(
@@ -40,7 +40,7 @@ require("babel-polyfill");
         //   0.089375,
         //   0.0446875
         // ]
-        resolutions: Array.from(new Array(12), (x, i) => 320 / 2 ** i)
+        resolutions: Array.from(new Array(12), (x, i) => 320 / Math.pow(2, i))
       }
     ),
     {
