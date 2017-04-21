@@ -37,7 +37,7 @@ function _interopRequireDefault(obj) {
   }
 })(undefined, function(L) {
   L.StratusConnect = L.StratusConnect || {};
-  L.StratusConnect.VERSION = "0.0.7";
+  L.StratusConnect.VERSION = "0.0.8";
   var bounds = {
     top: 219960,
     right: 572960,
@@ -115,8 +115,8 @@ function _interopRequireDefault(obj) {
         tileBboxX0 = tileSizeMetres * (0.5 + tilePoint.x),
         tileBboxY0 = tileSizeMetres * (-0.5 - tilePoint.y);
 
-      this.wmsParams.x = tileBboxX0 + bounds.top;
-      this.wmsParams.y = tileBboxY0 + bounds.left;
+      this.wmsParams.x = tileBboxX0 + bounds.left;
+      this.wmsParams.y = tileBboxY0 + bounds.top;
       this.wmsParams.zoom = resolutionMpp * this.options.tileSize;
 
       return this._url + L.Util.getParamString(this.wmsParams);
