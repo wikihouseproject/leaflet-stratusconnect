@@ -33,6 +33,14 @@
   var map,
     latlng = [51.5033106,-0.0840066];
 
+  var bounds = {
+    top: 219960,
+    right: 572960,
+    bottom: 138040,
+    left: 491040,
+    center: [51.458189528222356, -0.08094055858692445]
+  }
+
   function init() {
     var popup = L.popup();
 
@@ -53,11 +61,11 @@
     });
     L.control.layers({},layers).addTo(map);
 
-    map.setView(latlng, 5);
+    map.setView(bounds.center, 0);
 
     L.control.scale({ position: 'bottomright' }).addTo(map);
 
-    L.marker(latlng).addTo(map)
+    L.marker(bounds.center).addTo(map)
       .bindPopup('Point').openPopup();
 
     function onMapClick(e) {

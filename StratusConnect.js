@@ -19,7 +19,7 @@
   }
 })(this, function(L) {
   L.StratusConnect = L.StratusConnect || {};
-  L.StratusConnect.VERSION = "0.0.5";
+  L.StratusConnect.VERSION = "0.0.6";
   L.StratusConnect.CRS = L.extend(
     new L.Proj
       .CRS(
@@ -44,6 +44,7 @@
         {
           crs: L.StratusConnect.CRS,
           maxZoom: 12,
+          minZoom: 2,
           opacity: 0.8,
           tileSize: 286,
           bounds: L.latLngBounds(
